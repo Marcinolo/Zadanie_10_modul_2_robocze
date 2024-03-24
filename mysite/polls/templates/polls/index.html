@@ -1,0 +1,19 @@
+{% extends "polls/base.html" %}
+
+{% block content %}
+
+    {% for quote in quotes %}
+    <ul>
+        <li>
+            {% if not quote.done %}
+            <a href="{% url 'polls:detail' quote.id %}" role="button" class="outline"> {{ quote.name }} </a>
+            <a href="{% url 'polls:set_done' quote.id %}" role="button"> Mark Done </a>
+            <a href="{% url 'polls:delete' quote.id %}" role="button" class="contrast"> Delete quote </a>
+            {% else %}
+            <a href="{% url 'polls:detail' quote.id %}" role="button" class="secondary"><s>{{ quote.name }}</s></a>
+            {% endif %}
+        </li>
+    </ul>
+    {% endfor %}
+
+{% endblock %}
